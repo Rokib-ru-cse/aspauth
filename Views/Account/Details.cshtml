@@ -1,0 +1,34 @@
+﻿@model AuthDetailsViewModel
+
+@{
+    ViewData["Title"] = "Auth Details";
+}
+
+<h1>Auth Details</h1>
+<hr />
+
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped table-dark">
+            @if (Model.User == null)
+            {
+                <tr>
+                    <th class="text-center">No User</th>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <th>@Model.Cookie</th>
+                </tr>
+                <tr>
+                    <th>@Model.User.UserName</th>
+                </tr>
+                <tr>
+                    <th>@Model.User.Email</th>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

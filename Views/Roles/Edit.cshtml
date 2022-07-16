@@ -1,0 +1,62 @@
+﻿@model RoleViewModel
+@{
+    ViewData["Title"] = "Edit Role Page";
+}
+<h1>Edit Role Members @Model.Role.Name</h1>
+
+<form asp-action="Edit">
+
+    <h3>Members</h3>
+    <input type="hidden" value="@Model.Role.Name" name="RoleName" />
+
+    <table class="table table-stripped table-dark">
+        @if (Model.Members != null && Model.Members.Count() == 0)
+        {
+            <tr class="text-center">No Users are members</tr>
+        }
+        else
+        {
+            @foreach (IdentityUser user in Model.Members)
+            {
+                <tr>
+                    <td>@user.UserName</td>
+                    <td>
+                        <input type="checkbox" value="@user.Id" name="DeleteIds" />
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+
+
+
+    <h3>Non Members</h3>
+    <input type="hidden" value="@Model.Role.Name" name="RoleName" />
+
+    <table class="table table-stripped table-dark">
+        @if (Model.NonMembers != null && Model.NonMembers.Count() == 0)
+        {
+            <tr class="text-center">All Users are members</tr>
+        }
+        else
+        {
+            @foreach (IdentityUser user in Model.NonMembers)
+            {
+                <tr>
+                    <td>@user.UserName</td>
+                    <td>
+                        <input type="checkbox" value="@user.Id" name="AddIds" />
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+    <hr />
+
+    <div class="form-group">
+        <input type="submit" value="Edit Roles" class="btn btn-outline-primary" />
+    </div>
+
+</form>
+
+
